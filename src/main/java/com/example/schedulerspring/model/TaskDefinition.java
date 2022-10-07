@@ -1,13 +1,7 @@
 package com.example.schedulerspring.model;
 
+import com.example.schedulerspring.enums.ActionType;
 import lombok.Data;
-
-enum ActionType {
-    MONITOR,
-    PROCESSOR,
-    ACTUATOR
-}
-
 @Data
 public class TaskDefinition {
     private String cronExpression;
