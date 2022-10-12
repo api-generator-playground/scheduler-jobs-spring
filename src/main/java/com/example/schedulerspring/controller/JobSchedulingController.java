@@ -2,7 +2,6 @@ package com.example.schedulerspring.controller;
 
 import com.example.schedulerspring.factory.TaskFactory;
 import com.example.schedulerspring.model.TaskDefinition;
-import com.example.schedulerspring.model.TaskDefinitionRunnable;
 import com.example.schedulerspring.service.TaskSchedulingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ public class JobSchedulingController {
     @Autowired
     private TaskSchedulingService taskSchedulingService;
 
-    @PostMapping(path="/taskdef", consumes = "application/json", produces="application/json")
+    @PostMapping(path="/taskdef")
     public ResponseEntity<?> scheduleATask(@RequestBody TaskDefinition taskDefinition) {
         String jobId = taskSchedulingService.scheduleATask(UUID.randomUUID().toString(),
                                             TaskFactory.builder(taskDefinition),
@@ -26,14 +25,15 @@ public class JobSchedulingController {
         return new ResponseEntity<>(jobId, HttpStatus.OK);
     }
 
-    @GetMapping(path="/remove/{jobid}")
-    public void removeJob(@PathVariable String jobid) {
-        taskSchedulingService.removeScheduledTask(jobid);
+    @DeleteMapping(path="/remove/{jobId}")
+    public ResponseEntity<?> removeJob(@PathVariable String jobId) {
+        taskSchedulingService.removeScheduledTask(jobId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(path="/get/{jobid}")
-    public ResponseEntity<?> getJobInfo(@PathVariable String jobid) {
-        TaskDefinition taskDefinition = taskSchedulingService.getJobById(jobid);
+    @GetMapping(path="/get/{jobId}")
+    public ResponseEntity<?> getJobInfo(@PathVariable String jobId) {
+        TaskDefinition taskDefinition = taskSchedulingService.getJobById(jobId);
         return new ResponseEntity<>(taskDefinition, HttpStatus.OK);
     }
 

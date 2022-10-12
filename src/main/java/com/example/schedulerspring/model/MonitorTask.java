@@ -1,23 +1,17 @@
 package com.example.schedulerspring.model;
 
-public class MonitorTask implements Runnable {
-    private TaskDefinition taskDefinition;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class MonitorTask extends AbstractTask {
 
     public MonitorTask(TaskDefinition taskDefinition) {
-        this.taskDefinition = taskDefinition;
+        super(taskDefinition);
     }
 
     @Override
     public void run() {
-        System.out.println("[MONITOR] Running action: " + taskDefinition.getActionType());
-        System.out.println("[MONITOR] With Data: " + taskDefinition.getData());
-    }
-
-    public TaskDefinition getTaskDefinition() {
-        return taskDefinition;
-    }
-
-    public void setTaskDefinition(TaskDefinition taskDefinition) {
-        this.taskDefinition = taskDefinition;
+        log.info("[MONITOR] Running action: " + taskDefinition.getActionType());
+        log.info("[MONITOR] With Data: " + taskDefinition.getData());
     }
 }
