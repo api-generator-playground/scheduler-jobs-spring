@@ -19,9 +19,7 @@ public class JobSchedulingController {
 
     @PostMapping(path="/taskdef")
     public ResponseEntity<?> scheduleATask(@RequestBody TaskDefinition taskDefinition) {
-        String jobId = taskSchedulingService.scheduleATask(UUID.randomUUID().toString(),
-                                            TaskFactory.builder(taskDefinition),
-                                            taskDefinition.getCronExpression());
+        String jobId = taskSchedulingService.scheduleATask(TaskFactory.builder(taskDefinition));
         return new ResponseEntity<>(jobId, HttpStatus.OK);
     }
 
@@ -39,6 +37,6 @@ public class JobSchedulingController {
 
     @GetMapping(path="/allJobs")
     public ResponseEntity<?> getAllJobsIds() {
-        return new ResponseEntity<>(taskSchedulingService.listAllJobsById(), HttpStatus.OK);
+        return new ResponseEntity<>(taskSchedulingService.listAllJobs(), HttpStatus.OK);
     }
 }

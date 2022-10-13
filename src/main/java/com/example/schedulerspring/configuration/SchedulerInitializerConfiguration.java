@@ -20,11 +20,6 @@ public class SchedulerInitializerConfiguration {
 
     @PostConstruct
     public void postConstruct() {
-        taskDefinitionRepository.findAll().forEach(tf -> {
-            taskSchedulingService.scheduleATask(
-                    tf.getId().toString(),
-                    TaskFactory.builder(tf),
-                    tf.getCronExpression());
-        });
+        taskDefinitionRepository.findAll().forEach(tf -> taskSchedulingService.putTaskIntoScheduler(TaskFactory.builder(tf)));
     }
 }

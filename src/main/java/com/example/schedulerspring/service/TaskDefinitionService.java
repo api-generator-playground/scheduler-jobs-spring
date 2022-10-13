@@ -5,6 +5,8 @@ import com.example.schedulerspring.repository.TaskDefinitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class TaskDefinitionService {
 
@@ -14,4 +16,9 @@ public class TaskDefinitionService {
     public TaskDefinition createTaskDefinition(TaskDefinition taskDefinition) {
         return taskDefinitionRepository.save(taskDefinition);
     }
+
+    public void removeTaskDefinition(TaskDefinition taskDefinition) {
+        taskDefinitionRepository.delete(taskDefinition);
+    }
+
 }
