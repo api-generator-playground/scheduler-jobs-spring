@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+import java.util.function.Function;
 
 @RestController
 @RequestMapping(path = "/schedule")
@@ -17,9 +18,12 @@ public class JobSchedulingController {
     @Autowired
     private TaskSchedulingService taskSchedulingService;
 
+    @Autowired
+    TaskFactory taskFactory;
+
     @PostMapping(path="/taskdef")
     public ResponseEntity<?> scheduleATask(@RequestBody TaskDefinition taskDefinition) {
-        String jobId = taskSchedulingService.scheduleATask(TaskFactory.builder(taskDefinition));
+        String jobId = taskSchedulingService.scheduleATask(taskFactory.builder(taskDefinition));
         return new ResponseEntity<>(jobId, HttpStatus.OK);
     }
 

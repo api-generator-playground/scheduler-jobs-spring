@@ -18,8 +18,11 @@ public class SchedulerInitializerConfiguration {
     @Autowired
     TaskSchedulingService taskSchedulingService;
 
+    @Autowired
+    TaskFactory taskFactory;
+
     @PostConstruct
     public void postConstruct() {
-        taskDefinitionRepository.findAll().forEach(tf -> taskSchedulingService.putTaskIntoScheduler(TaskFactory.builder(tf)));
+        taskDefinitionRepository.findAll().forEach(tf -> taskSchedulingService.putTaskIntoScheduler(taskFactory.builder(tf)));
     }
 }

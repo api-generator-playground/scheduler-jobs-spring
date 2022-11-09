@@ -9,7 +9,4 @@ import java.util.UUID;
 
 @Repository
 public interface TaskDefinitionRepository extends JpaRepository<TaskDefinition, Long> {
-
-    @Transactional
-    void deleteById(UUID id);
 }

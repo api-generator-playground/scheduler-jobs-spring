@@ -8,9 +8,18 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 @Configuration
 public class TaskSchedulerConfiguration {
 
-    @Bean
+    @Bean(name = "taskSchedulerPool")
     public TaskScheduler taskSchedulerPool() {
-        return new ThreadPoolTaskScheduler();
+        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+        taskScheduler.setPoolSize(100);
+        return taskScheduler;
+    }
+
+    @Bean(name = "processorSchedulerPool")
+    public TaskScheduler processorSchedulerPool() {
+        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+        taskScheduler.setPoolSize(1);
+        return taskScheduler;
     }
 
 }
