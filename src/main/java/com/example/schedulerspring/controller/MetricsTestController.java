@@ -2,7 +2,7 @@ package com.example.schedulerspring.controller;
 
 import com.example.schedulerspring.configuration.MetricsTestConfiguration;
 import com.example.schedulerspring.model.TaskDefinition;
-import com.example.schedulerspring.rules.MetricsDTO;
+import com.example.schedulerspring.model.MetricsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

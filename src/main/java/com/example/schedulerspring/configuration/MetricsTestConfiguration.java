@@ -1,6 +1,6 @@
 package com.example.schedulerspring.configuration;
 
-import com.example.schedulerspring.rules.MetricsDTO;
+import com.example.schedulerspring.model.MetricsDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

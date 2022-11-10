@@ -1,4 +1,4 @@
-package com.example.schedulerspring.rules;
+package com.example.schedulerspring.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,10 +1,8 @@
 package com.example.schedulerspring.factory;
 
 import com.example.schedulerspring.enums.ActionType;
-import com.example.schedulerspring.model.MonitorTask;
 import com.example.schedulerspring.model.ProcessorTask;
 import com.example.schedulerspring.model.TaskDefinition;
-import com.example.schedulerspring.rules.MetricsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

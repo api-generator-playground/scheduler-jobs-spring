@@ -1,5 +1,7 @@
 package com.example.schedulerspring.rules;
 
+import com.example.schedulerspring.model.MetricsDTO;
+
 public class LowConsumeRule {
     private static final Double CPU_THRESHOLD = 0.2;
     private static final Double MEMORY_THRESHOLD = 0.1;

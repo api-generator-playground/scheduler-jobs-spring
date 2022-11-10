@@ -1,5 +1,7 @@
 package com.example.schedulerspring.rules;
 
+import com.example.schedulerspring.model.MetricsDTO;
+
 public class GhostApplicationRule {
 
     public static boolean isGhostApplication(MetricsDTO metricsDTO) {
