@@ -27,13 +27,17 @@ public class MetricsActuator {
             log.info("Your application is operating at ghost mode. Stop this application to save resources.");
         }
         if (LowConsumeRule.isInTotalLowConsume(metricsDTO)) {
-            log.info("Your application is totally running at low consume");
+            log.info("Your application is totally running at low consume. " +
+                        "Try to scale down one instance to save resources.");
         } else if (LowConsumeRule.isInPartialLowConsume(metricsDTO)) {
-            log.info("Your application is partially running at low consume");
+            log.info("Your application is partially running at low consume. " +
+                        "Try to scale down one instance to save resources.");
         } else if (HighConsumeRule.isInTotalHighConsume(metricsDTO)) {
-            log.info("Your application is totally running at high consume");
+            log.info("Your application is totally running at high consume. " +
+                        "Try to scale up one instance to improve the performance.");
         } else if (HighConsumeRule.isInPartialHighConsume(metricsDTO)) {
-            log.info("Your application is partially running at high consume");
+            log.info("Your application is partially running at high consume. " +
+                    "Try to scale up one instance to improve the performance.");
         }
     }
 }

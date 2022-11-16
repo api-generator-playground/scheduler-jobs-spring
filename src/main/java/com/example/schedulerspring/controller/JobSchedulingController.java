@@ -21,7 +21,7 @@ public class JobSchedulingController {
     @Autowired
     TaskFactory taskFactory;
 
-    @PostMapping(path="/taskdef")
+    @PostMapping(path="/createJob")
     public ResponseEntity<?> scheduleATask(@RequestBody TaskDefinition taskDefinition) {
         String jobId = taskSchedulingService.scheduleATask(taskFactory.builder(taskDefinition));
         return new ResponseEntity<>(jobId, HttpStatus.OK);

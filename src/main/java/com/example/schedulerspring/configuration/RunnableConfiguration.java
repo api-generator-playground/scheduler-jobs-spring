@@ -55,7 +55,6 @@ public class RunnableConfiguration {
 //                MetricsDTO metricsDTO = new MetricsDTO(0.1, 0.05, 25.0, 1000.0);
                 log.info("[OBSERVER] Running action");
                 metricsActuator.takeAction(metricsTestConfiguration.getMetricsDTO());
-                log.info("[OBSERVER] With Data");
             }
         };
     }
