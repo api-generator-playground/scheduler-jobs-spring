@@ -2,11 +2,15 @@ package com.example.schedulerspring.rules;
 
 import com.example.schedulerspring.model.MetricsDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
 public class MetricsActuator {
+
+    @Autowired
+    private GeneralRules generalRules;
 
     /*
         Ideia de Vitor: Realizar uma combinação com todas as métricas e cada combinação dessa
@@ -39,5 +43,21 @@ public class MetricsActuator {
             log.info("Your application is partially running at high consume. " +
                     "Try to scale up one instance to improve the performance.");
         }
+    }
+
+
+    public void takeActionPlus(MetricsDTO metricsDTO) {
+        GeneralRules.MetricClassification mc = this.generalRules.getClassification(metricsDTO);
+        if (mc == null) { log.info("The limits for this application wasn't set!"); }
+        else {
+            log.info(String.format("Your application has its CPU in a %s USE." + System.lineSeparator() +
+                    "The Memory is at a %s USE." + System.lineSeparator() +
+                    "The Number of Requests is considered %s." + System.lineSeparator() +
+                    "The latency is considered %s.", mc.getCpu(), mc.getMemory(), mc.getRequests(), mc.getLatency()));
+        }
+    }
+
+    public void setLimits(GeneralRules.MetricLimits limits) {
+        this.generalRules.setLimits(limits);
     }
 }
